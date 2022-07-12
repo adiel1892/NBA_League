@@ -39,7 +39,7 @@ class Game:
         self.home.points_in_curr_game = 0
         self.away.points_in_curr_game = 0
 
-    def pring_game(self):
+    def print_game(self):
         print(self.home.name, " VS. " , self.away.name)
 
 

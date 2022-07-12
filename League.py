@@ -1,7 +1,4 @@
-import functools
-
 from Team import Team
-
 
 class League:
     def __init__(self):
@@ -23,7 +20,7 @@ class League:
             curr_team.give_talent()
             self.teams.append(curr_team)
 
-    def longest_wins_strike(self):
+    def longest_wins_strike(self) -> int:
         res = 0
         index = 0
         for i in range(0, len(self.teams)):
@@ -33,7 +30,7 @@ class League:
         print("The longest wins strike is ", res, " by ", self.teams[index].name)
         return res
 
-    def longest_losses_strike(self):
+    def longest_losses_strike(self) -> int:
         res = 0
         index = 0
         for i in range(0, len(self.teams)):
@@ -43,7 +40,7 @@ class League:
         print("The longest losses strike is ", res, " by ", self.teams[index].name)
         return res
 
-    def positive_points_teams(self):
+    def positive_points_teams(self) -> int:
         res = 0
         for i in range(0, len(self.teams)):
             if self.teams[i].positive_points - self.teams[i].negative_points > 0:
@@ -51,7 +48,7 @@ class League:
         print("The number of teams with positive points is " , res)
         return res
 
-    def most_positive_points_team(self):
+    def most_positive_points_team(self) -> str:
         points = self.teams[0].positive_points
         res = 0
         for i in range(0, len(self.teams)):
@@ -62,7 +59,7 @@ class League:
               " points!")
         return self.teams[res].name
 
-    def lowest_positive_points_team(self):
+    def lowest_positive_points_team(self) -> str:
         points = self.teams[0].positive_points
         res = 0
         for i in range(0, len(self.teams)):
@@ -73,7 +70,7 @@ class League:
               " points!")
         return self.teams[res].name
 
-    def most_negative_points_team(self):
+    def most_negative_points_team(self) -> str:
         points = self.teams[0].negative_points
         res = 0
         for i in range(0, len(self.teams)):
@@ -85,7 +82,7 @@ class League:
         return self.teams[res].name
 
 
-    def lowest_negative_points_team(self):
+    def lowest_negative_points_team(self) -> str:
         points = self.teams[0].negative_points
         res = 0
         for i in range(0, len(self.teams)):
@@ -96,7 +93,7 @@ class League:
               " points!")
         return self.teams[res].name
 
-    def compare_teams(self , a: Team , b: Team):
+    def compare_teams(self , a: Team , b: Team) -> bool:
         if a.wins > b.wins:
             return True
         elif a.wins < b.wins:
@@ -106,8 +103,8 @@ class League:
         else:
             return False
 
-    def show_table_when_season_over(self):
-       sorted(self.teams , key=functools.cmp_to_key(self.compare_teams()))
+    # def show_table_when_season_over(self):
+    #    sorted(self.teams , key=functools.cmp_to_key(self.compare_teams()))
 
     def print_top_teams(self , top):
         print("Top " , top , " teams:")

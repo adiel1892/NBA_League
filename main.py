@@ -1,20 +1,11 @@
-import random
-# This is a sample Python script.
+from League import League
+from Schedule import Schedule
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-    x = random.uniform(0,1)
-    print(x)
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-    print("hey" , " You")
+    league = League()
+    sch = Schedule(league)
+    # sch.print_schedule()
+    # sch.run_the_season()
+    # league.show_table_when_season_over()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
