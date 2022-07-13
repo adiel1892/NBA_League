@@ -1,4 +1,6 @@
 from Team import Team
+import functools
+
 
 class League:
     def __init__(self):
@@ -45,7 +47,7 @@ class League:
         for i in range(0, len(self.teams)):
             if self.teams[i].positive_points - self.teams[i].negative_points > 0:
                 res += 1
-        print("The number of teams with positive points is " , res)
+        print("The number of teams with positive points is ", res)
         return res
 
     def most_positive_points_team(self) -> str:
@@ -81,7 +83,6 @@ class League:
               " points!")
         return self.teams[res].name
 
-
     def lowest_negative_points_team(self) -> str:
         points = self.teams[0].negative_points
         res = 0
@@ -93,22 +94,22 @@ class League:
               " points!")
         return self.teams[res].name
 
-    def compare_teams(self , a: Team , b: Team) -> bool:
-        if a.wins > b.wins:
-            return True
-        elif a.wins < b.wins:
-            return False
-        elif a.positive_points - a.negative_points > b.positive_points - b.negative_points:
-            return True
-        else:
-            return False
+    def compare_teams(self):
+        res = 0
+        for i in self.teams:
+            if i.wins > res:
+                res = i.wins
+        return res
 
-    # def show_table_when_season_over(self):
-    #    sorted(self.teams , key=functools.cmp_to_key(self.compare_teams()))
+    def show_table_when_season_over(self):
+        # first sort by wins , if equal sort by difference
+        self.teams.sort(key=lambda x: (x.wins , x.positive_points - x.negative_points),reverse=True)
+        for i in range(0, len(self.teams)):
+            curr_team = self.teams[i]
+            print(i + 1, ") ", curr_team.name, " , wins: ", curr_team.wins, " , difference: ",
+            curr_team.positive_points - curr_team.negative_points)
 
-    def print_top_teams(self , top):
-        print("Top " , top , " teams:")
-        for i in range(0,top):
-            print(i + 1 , ") " , self.teams[i].name)
-
-
+    def print_top_teams(self, top):
+        print("Top ", top, " teams:")
+        for i in range(0, top):
+            print(i + 1, ") ", self.teams[i].name)

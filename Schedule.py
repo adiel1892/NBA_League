@@ -7,7 +7,7 @@ class Schedule:
         self.league = league
         self.round_number = []
         self.matches = []
-        self.matches_per_round = len(self.league.teams)
+        self.matches_per_round = int(len(self.league.teams) / 2)
         self.num_teams = len(self.league.teams)
         self.rounds = (self.num_teams - 1) * 2
         for r in range(0, self.rounds):
@@ -21,7 +21,7 @@ class Schedule:
                     self.round_number.append(curr_game)
                     if len(self.round_number) == self.matches_per_round:
                         self.matches.append(self.round_number)
-                        self.round_number.clear()
+                        self.round_number = []
                 else:
                     away = (r + match) % (self.num_teams - 1)
                     home = (self.num_teams - 1 - match + r) % (self.num_teams - 1)
@@ -31,13 +31,14 @@ class Schedule:
                     self.round_number.append(curr_game)
                     if len(self.round_number) == self.matches_per_round:
                         self.matches.append(self.round_number)
-                        self.round_number.clear()
+                        self.round_number = []
+
+
 
     def print_schedule(self):
         for r in range(0, self.rounds):
             print("Round number ", r + 1, ":")
             for match in range(0, self.matches_per_round):
-                # print(self.matches)
                 self.matches[r][match].print_game()
 
     def print_matches_in_round(self, r: int):
@@ -48,5 +49,4 @@ class Schedule:
     def run_the_season(self):
         for r in range(0, self.rounds):
             for match in range(0, self.matches_per_round):
-                print(r, " ", match)
                 self.matches[r][match].start_game()
